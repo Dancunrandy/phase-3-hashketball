@@ -126,4 +126,127 @@ def game_hash
   }
 end
 
-# Write code here
+# In your hashketball.rb file
+def team_colors(team_name)
+  teams = {
+    "Brooklyn Nets" => ["Black", "White"],
+    "Charlotte Hornets" => ["Turquoise", "Purple"]
+  }
+  teams[team_name]
+end
+
+def team_names
+  teams = {
+    "Brooklyn Nets" => ["Black", "White"],
+    "Charlotte Hornets" => ["Turquoise", "Purple"]
+  }
+  teams.keys
+end
+
+def player_numbers(team_name)
+  players = {
+    "Brooklyn Nets" => [44, 42, 11, 34, 99],
+    "Charlotte Hornets" => [33, 15, 50, 44, 3]
+  }
+  players[team_name]
+end
+
+def player_stats(player_name)
+  stats = {
+    "Jeff Adrien" => {
+      number: 25,
+      shoe: 17,
+      points: 10,
+      rebounds: 1,
+      assists: 1,
+      steals: 2,
+      blocks: 7,
+      slam_dunks: 2
+    }
+  }
+  stats[player_name]
+end
+
+def big_shoe_rebounds
+  stats = {
+    "Jeff Adrien" => {
+      number: 25,
+      shoe: 17,
+      points: 10,
+      rebounds: 1,
+      assists: 1,
+      steals: 2,
+      blocks: 7,
+      slam_dunks: 2
+    },
+    "Bismack Biyombo" => {
+      number: 0,
+      shoe: 16,
+      points: 12,
+      rebounds: 11,
+      assists: 1,
+      steals: 7,
+      blocks: 15,
+      slam_dunks: 10
+    }
+  }
+
+  largest_shoe = 0
+  largest_shoe_rebounds = 0
+  stats.each do |name, player_stats|
+    if player_stats[:shoe] > largest_shoe
+      largest_shoe = player_stats[:shoe]
+      largest_shoe_rebounds = player_stats[:rebounds]
+    end
+  end
+  largest_shoe_rebounds
+end
+def num_points_scored(player_name)
+  players = [alan_anderson, reggie_evans, brook_lopez, mason_plumlee, jason_terry, jeff_adrien, bismack_biyombo, desagna_diop, ben_gordon, kemba_walker]
+  player = players.find { |player| player[:player_name] == player_name }
+  player[:points]
+end
+
+def shoe_size(player_name)
+  players = [alan_anderson, reggie_evans, brook_lopez, mason_plumlee, jason_terry, jeff_adrien, bismack_biyombo, desagna_diop, ben_gordon, kemba_walker]
+  player = players.find { |player| player[:player_name] == player_name }
+  player[:shoe]
+end
+def player_numbers(team_name)
+  numbers = []
+  game_hash.each do |location, team_data|
+    if team_data[:team_name] == team_name
+      team_data[:players].each do |player|
+        numbers << player[:number]
+      end
+    end
+  end
+  numbers
+end
+
+def player_stats(player_name)
+  stats = {}
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |player|
+      if player[:player_name] == player_name
+        stats = player
+      end
+    end
+  end
+  stats
+end
+
+def big_shoe_rebounds
+  biggest_shoe = 0
+  rebounds = 0
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |player|
+      if player[:shoe] > biggest_shoe
+        biggest_shoe = player[:shoe]
+        rebounds = player[:rebounds]
+      end
+    end
+  end
+  rebounds
+end
+
